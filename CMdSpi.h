@@ -10,12 +10,12 @@
 #pragma once
 
 #include <vector>
-#include "ctp_api/ThostFtdcMdApi.h"
+#include "CTP_API/ThostFtdcMdApi.h"
 
 
 
 ///inherit CThostFtdcMdSpi and implement the virtual functions
-class CustomMdSpi : public CThostFtdcMdSpi
+class CMdSpi : public CThostFtdcMdSpi
 {
 public:
 	///Call it when the client connected with the backstage(before login)
@@ -38,7 +38,7 @@ public:
 	/// response of the login requst
 	void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	/// response of the logout requst
+	/// response of the logout reqThostmduserust
 	void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
 	/// response of the error
