@@ -46,7 +46,7 @@ void CMdSpi::OnFrontDisconnected(int nReason)
 void CMdSpi::OnHeartBeatWarning(int nTimeLapse)
 {
 	std::cout << "------Network heartbeat overtime------" << std::endl;
-	std::cout << "The interval from last time: " << nTimeLapse <<std::endl;
+	std::cout << "The interval from last time: " << nTimeLapse << std::endl;
 }
 
 // login response
@@ -123,8 +123,27 @@ void CMdSpi::OnRspSubMarketData(
 	if(!bResult)
 	{
 		std::cout << "------Subscribe quotation successfully------" << std::endl;
-		std::cout << "InstrumentID: "pSpecificInstrument->InstrumentID << std::endl;
+		std::cout << "InstrumentID: " << pSpecificInstrument->InstrumentID << std::endl;
+		// add csv
+		char filePath[100] = {'\0'};
+		sprintf(filePath, "%s_market_data.csv", pSpecificInstrument->InstrumentID);
+		std::ofstream outFile;
+		outFile.open(filePath, std::ios::out); // open a new csv file
+		outFile << "InstrumentID" << ","
+				<< "UpdateTime" << ","
+				<< "LastPrice" << ","
+				<< "Volume" << ","
+				<< "BidPrice1" << ","
+				<< "BidVolume1" << ","
+				<< "AskPrice1" << ","
+				<< "AskVolume1" << ","
+				<< "OpenInterest" << ","
+				<< "Turnover" <<std::endl;
+		outFile.close();
+
 	}
+	else 
+		std::cout << "return error--->>> ErrorID=" << pRspInfo->ErrorID << ",ErrorMsg=" << pRspInfo->ErrorMsg << std::endl;
 }
 
 void CMdSpi::OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
@@ -146,6 +165,27 @@ void CMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketDa
 {
 	// cout the market data
 	std::cout << "OnRtnDepthMarketData" << std::endl;
+	std::cout << "------get depth market data------" << std::endl;
+	std::cout << "TradingDay: " << pDepthMarketData->TradingDay << std::endl;
+	std::cout << "ExchangeID: " << pDepthMarketData->ExchangeID << std::endl;
+	std::cout << "InstrumentID: " << pDepthMarketData->InstrumentID << std::endl;
+	std::cout << "ExchangeInstID: " << pDepthMarketData->ExchangeInstID << std::endl;
+	std::cout << "Last price: " << pDepthMarketData->LastPrice << std::endl;
+	std::cout << "Volume: " << pDepthMarketData->Volume << std::endl;
+	char filePath[100] = {'\0'};
+	sprintf(filePath, "%s_market_data.csv", pDepthMarketData->InstrumentID);
+	std::ofstream outFile;
+	outFile.open(filePath, std::ios::app); // OnRspSubMarketData
+	outFile << pDepthMarketData->InstrumentID << ","
+			<< pDepthMarketData->LastPrice << "." << pDepthMarketData->UpdateMillisec << ","
+			<< pDepthMarketData->Volume << ","
+			<< pDepthMarketData->BidPrice1 << ","
+			<< pDepthMarketData->BidVolume1 << ","
+			<< pDepthMarketData->AskPrice1 << ","
+			<< pDepthMarketData->AskVolume1 << ","
+			<< pDepthMarketData->OpenInterest << ","
+			<< pDepthMarketData->Turnover << std::endl;
+	outFile.close();
 }
 
 void CMdSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
