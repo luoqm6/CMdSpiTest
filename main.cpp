@@ -13,12 +13,13 @@ using namespace std;
 
 
 //configuration parameter
-char FRONT_ADDR[] = "tcp://asp-sim2-md1.financial-trading-platform.com:26213";
-TThostFtdcBrokerIDType BROKER_ID = "2030";		//code of the broker
-TThostFtdcInvestorIDType INVESTOR_ID = "00092";
-TThostFtdcPasswordType PASSWORD = "888888";
-char *ppInstrumentID[] = {"cu1205","cu1206"};
-int iInstrumentID = 2;
+CThostFtdcMdApi* pUserApi;
+char gMdFrontAddr[] = "tcp://180.168.146.187:10010";
+TThostFtdcBrokerIDType gBrokerID = "2030";		//code of the broker
+TThostFtdcInvestorIDType gInvesterID = "112573";
+TThostFtdcPasswordType gInvesterPassword = "Luoqingming1997";
+char *ppInstrumentID[] = {"cu1803","cu1804"};
+int instrumentNum = 2;
 
 //request id
 int iRequestID = 0;
@@ -30,10 +31,10 @@ int main()
 	// cout<<"Enter password: ";
 	// scanf("%s",gInvesterPassword);
 
-	CThostFtdcMdApi* pUserApi = CThostFtdcMdApi::CreateFtdcMdApi();
+	pUserApi = CThostFtdcMdApi::CreateFtdcMdApi();
 	CMdSpi* pUserSpi = new CMdSpi();
 	pUserApi->RegisterSpi(pUserSpi);
-	pUserApi->RegisterFront(FRONT_ADDR);
+	pUserApi->RegisterFront(gMdFrontAddr);
 	pUserApi->Init();
 	pUserApi->Join();
 
