@@ -177,14 +177,16 @@ void CMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketDa
 	std::ofstream outFile;
 	outFile.open(filePath, std::ios::app); // OnRspSubMarketData
 	outFile << pDepthMarketData->InstrumentID << ","
-			<< pDepthMarketData->LastPrice << "." << pDepthMarketData->UpdateMillisec << ","
+			<< pDepthMarketData->UpdateTime << "." << pDepthMarketData->UpdateMillisec << ","
+			<< pDepthMarketData->LastPrice << ","
 			<< pDepthMarketData->Volume << ","
 			<< pDepthMarketData->BidPrice1 << ","
 			<< pDepthMarketData->BidVolume1 << ","
 			<< pDepthMarketData->AskPrice1 << ","
 			<< pDepthMarketData->AskVolume1 << ","
 			<< pDepthMarketData->OpenInterest << ","
-			<< pDepthMarketData->Turnover << std::endl;
+			<< pDepthMarketData->Turnover/1000000 << std::endl;
+	std::cout << pDepthMarketData->Turnover/100000000 << std::endl;
 	outFile.close();
 }
 
