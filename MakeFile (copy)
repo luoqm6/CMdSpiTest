@@ -1,7 +1,0 @@
-objects = main.o ./CTP_API/thostmduserapi.so ./CTP_API/thosttraderapi.so
-CTP:${objects}
-	g++ -o CTP ${objects}
-
-main.o:main.cpp
-	g++ -c main.cpp
-	

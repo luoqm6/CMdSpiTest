@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../inc/CMdSpi.h
+vector
+-
+ThostFtdcMdApi.h
+../inc/ThostFtdcMdApi.h
+
+../inc/ThostFtdcMdApi.h
+ThostFtdcUserApiStruct.h
+../inc/ThostFtdcUserApiStruct.h
+
+../inc/ThostFtdcUserApiDataType.h
+
+../inc/ThostFtdcUserApiStruct.h
+ThostFtdcUserApiDataType.h
+../inc/ThostFtdcUserApiDataType.h
+
+/home/luoqingming/coding/ctp_api/src/CMdSpi.cpp
+iostream
+-
+fstream
+-
+cstring
+-
+CMdSpi.h
+/home/luoqingming/coding/ctp_api/src/CMdSpi.h
+ThostFtdcMdApi.h
+/home/luoqingming/coding/ctp_api/src/ThostFtdcMdApi.h
+ThostFtdcUserApiStruct.h
+/home/luoqingming/coding/ctp_api/src/ThostFtdcUserApiStruct.h
+
