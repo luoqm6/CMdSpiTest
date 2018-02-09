@@ -51,7 +51,7 @@ void CTraderSpi::ReqUserLogin()
 	strcpy(req.UserID, INVESTOR_ID);
 	strcpy(req.Password, PASSWORD);
 	int iResult = pUserApi->ReqUserLogin(&req, ++iRequestID);
-	cout << "--->>> ·¢ËÍÓÃ»§µÇÂ¼ÇëÇó: " << iResult << ((iResult == 0) ? ", ³É¹¦" : ", Ê§°Ü") << endl;
+	cout << "--->>> Send user login request: " << iResult << ((iResult == 0) ? ", Succeed" : ", Failed") << endl;
 }
 
 void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
@@ -60,7 +60,7 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
 	cout << "--->>> " << "OnRspUserLogin" << endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
 	{
-		// ±£´æ»á»°²ÎÊý
+		// save session parameter
 		FRONT_ID = pRspUserLogin->FrontID;
 		SESSION_ID = pRspUserLogin->SessionID;
 		int iNextOrderRef = atoi(pRspUserLogin->MaxOrderRef);
@@ -70,7 +70,7 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
 		sprintf(FORQUOTE_REF, "%d", 1);
 		sprintf(QUOTE_REF, "%d", 1);
 		///»ñÈ¡µ±Ç°½»Ò×ÈÕ
-		cout << "--->>> »ñÈ¡µ±Ç°½»Ò×ÈÕ = " << pUserApi->GetTradingDay() << endl;
+		cout << "--->>>  = " << pUserApi->GetTradingDay() << endl;
 		///Í¶×ÊÕß½áËã½á¹ûÈ·ÈÏ
 		ReqSettlementInfoConfirm();
 	}
@@ -126,6 +126,7 @@ void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CTho
 		ReqQryTradingAccount();
 	}
 }
+TThostFtdcFrontIDType FRONT_ID; 		//fron
 
 void CTraderSpi::ReqQryTradingAccount()
 {
