@@ -1,1 +1,1 @@
-/usr/bin/c++      CMakeFiles/CTP.dir/main.cpp.o  -o ../../bin/CTP  -L/home/luoqingming/coding/ctp_api/lib -lthostmduserapi -lthosttraderapi -lCMdSpi -Wl,-rpath,/home/luoqingming/coding/ctp_api/lib 
+/usr/bin/c++      CMakeFiles/CTP.dir/main.cpp.o  -o ../../bin/CTP  -L/home/luoqingming/coding/ctp_api/lib -lthostmduserapi -lthosttraderapi -lCMdSpi -lTraderSpi -Wl,-rpath,/home/luoqingming/coding/ctp_api/lib 

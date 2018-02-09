@@ -111,21 +111,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/CTP.dir/rule:
-	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/CTP.dir/rule
-.PHONY : src/CMakeFiles/CTP.dir/rule
-
-# Convenience name for target.
-CTP: src/CMakeFiles/CTP.dir/rule
-
-.PHONY : CTP
-
-# fast build rule for target.
-CTP/fast:
-	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/build
-.PHONY : CTP/fast
-
-# Convenience name for target.
 src/CMakeFiles/CMdSpi_static.dir/rule:
 	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/CMdSpi_static.dir/rule
 .PHONY : src/CMakeFiles/CMdSpi_static.dir/rule
@@ -139,6 +124,36 @@ CMdSpi_static: src/CMakeFiles/CMdSpi_static.dir/rule
 CMdSpi_static/fast:
 	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/CMdSpi_static.dir/build.make src/CMakeFiles/CMdSpi_static.dir/build
 .PHONY : CMdSpi_static/fast
+
+# Convenience name for target.
+src/CMakeFiles/TraderSpi_static.dir/rule:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/TraderSpi_static.dir/rule
+.PHONY : src/CMakeFiles/TraderSpi_static.dir/rule
+
+# Convenience name for target.
+TraderSpi_static: src/CMakeFiles/TraderSpi_static.dir/rule
+
+.PHONY : TraderSpi_static
+
+# fast build rule for target.
+TraderSpi_static/fast:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/build
+.PHONY : TraderSpi_static/fast
+
+# Convenience name for target.
+src/CMakeFiles/CTP.dir/rule:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/CTP.dir/rule
+.PHONY : src/CMakeFiles/CTP.dir/rule
+
+# Convenience name for target.
+CTP: src/CMakeFiles/CTP.dir/rule
+
+.PHONY : CTP
+
+# fast build rule for target.
+CTP/fast:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/build
+.PHONY : CTP/fast
 
 CMdSpi.o: CMdSpi.cpp.o
 
@@ -166,6 +181,33 @@ CMdSpi.s: CMdSpi.cpp.s
 CMdSpi.cpp.s:
 	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/CMdSpi_static.dir/build.make src/CMakeFiles/CMdSpi_static.dir/CMdSpi.cpp.s
 .PHONY : CMdSpi.cpp.s
+
+TraderSpi.o: TraderSpi.cpp.o
+
+.PHONY : TraderSpi.o
+
+# target to build an object file
+TraderSpi.cpp.o:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/TraderSpi.cpp.o
+.PHONY : TraderSpi.cpp.o
+
+TraderSpi.i: TraderSpi.cpp.i
+
+.PHONY : TraderSpi.i
+
+# target to preprocess a source file
+TraderSpi.cpp.i:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/TraderSpi.cpp.i
+.PHONY : TraderSpi.cpp.i
+
+TraderSpi.s: TraderSpi.cpp.s
+
+.PHONY : TraderSpi.s
+
+# target to generate assembly for a file
+TraderSpi.cpp.s:
+	cd /home/luoqingming/coding/ctp_api/build && $(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/TraderSpi.cpp.s
+.PHONY : TraderSpi.cpp.s
 
 main.o: main.cpp.o
 
@@ -201,12 +243,16 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... CTP"
-	@echo "... rebuild_cache"
 	@echo "... CMdSpi_static"
+	@echo "... rebuild_cache"
+	@echo "... TraderSpi_static"
+	@echo "... CTP"
 	@echo "... CMdSpi.o"
 	@echo "... CMdSpi.i"
 	@echo "... CMdSpi.s"
+	@echo "... TraderSpi.o"
+	@echo "... TraderSpi.i"
+	@echo "... TraderSpi.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

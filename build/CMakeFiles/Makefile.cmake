@@ -43,6 +43,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "src/CMakeFiles/CTP.dir/DependInfo.cmake"
   "src/CMakeFiles/CMdSpi_static.dir/DependInfo.cmake"
+  "src/CMakeFiles/TraderSpi_static.dir/DependInfo.cmake"
+  "src/CMakeFiles/CTP.dir/DependInfo.cmake"
   )

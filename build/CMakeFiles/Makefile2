@@ -63,14 +63,16 @@ CMAKE_BINARY_DIR = /home/luoqingming/coding/ctp_api/build
 # Directory level rules for directory src
 
 # Convenience name for "all" pass in the directory.
-src/all: src/CMakeFiles/CTP.dir/all
 src/all: src/CMakeFiles/CMdSpi_static.dir/all
+src/all: src/CMakeFiles/TraderSpi_static.dir/all
+src/all: src/CMakeFiles/CTP.dir/all
 
 .PHONY : src/all
 
 # Convenience name for "clean" pass in the directory.
-src/clean: src/CMakeFiles/CTP.dir/clean
 src/clean: src/CMakeFiles/CMdSpi_static.dir/clean
+src/clean: src/CMakeFiles/TraderSpi_static.dir/clean
+src/clean: src/CMakeFiles/CTP.dir/clean
 
 .PHONY : src/clean
 
@@ -78,43 +80,6 @@ src/clean: src/CMakeFiles/CMdSpi_static.dir/clean
 src/preinstall:
 
 .PHONY : src/preinstall
-
-#=============================================================================
-# Target rules for target src/CMakeFiles/CTP.dir
-
-# All Build rule for target.
-src/CMakeFiles/CTP.dir/all:
-	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/depend
-	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luoqingming/coding/ctp_api/build/CMakeFiles --progress-num=3,4 "Built target CTP"
-.PHONY : src/CMakeFiles/CTP.dir/all
-
-# Include target in all.
-all: src/CMakeFiles/CTP.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-src/CMakeFiles/CTP.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luoqingming/coding/ctp_api/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/CTP.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luoqingming/coding/ctp_api/build/CMakeFiles 0
-.PHONY : src/CMakeFiles/CTP.dir/rule
-
-# Convenience name for target.
-CTP: src/CMakeFiles/CTP.dir/rule
-
-.PHONY : CTP
-
-# clean rule for target.
-src/CMakeFiles/CTP.dir/clean:
-	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/clean
-.PHONY : src/CMakeFiles/CTP.dir/clean
-
-# clean rule for target.
-clean: src/CMakeFiles/CTP.dir/clean
-
-.PHONY : clean
 
 #=============================================================================
 # Target rules for target src/CMakeFiles/CMdSpi_static.dir
@@ -150,6 +115,80 @@ src/CMakeFiles/CMdSpi_static.dir/clean:
 
 # clean rule for target.
 clean: src/CMakeFiles/CMdSpi_static.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/TraderSpi_static.dir
+
+# All Build rule for target.
+src/CMakeFiles/TraderSpi_static.dir/all:
+	$(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/depend
+	$(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luoqingming/coding/ctp_api/build/CMakeFiles --progress-num=5,6 "Built target TraderSpi_static"
+.PHONY : src/CMakeFiles/TraderSpi_static.dir/all
+
+# Include target in all.
+all: src/CMakeFiles/TraderSpi_static.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/TraderSpi_static.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luoqingming/coding/ctp_api/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/TraderSpi_static.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luoqingming/coding/ctp_api/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/TraderSpi_static.dir/rule
+
+# Convenience name for target.
+TraderSpi_static: src/CMakeFiles/TraderSpi_static.dir/rule
+
+.PHONY : TraderSpi_static
+
+# clean rule for target.
+src/CMakeFiles/TraderSpi_static.dir/clean:
+	$(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/clean
+.PHONY : src/CMakeFiles/TraderSpi_static.dir/clean
+
+# clean rule for target.
+clean: src/CMakeFiles/TraderSpi_static.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/CTP.dir
+
+# All Build rule for target.
+src/CMakeFiles/CTP.dir/all:
+	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/depend
+	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luoqingming/coding/ctp_api/build/CMakeFiles --progress-num=3,4 "Built target CTP"
+.PHONY : src/CMakeFiles/CTP.dir/all
+
+# Include target in all.
+all: src/CMakeFiles/CTP.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/CTP.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luoqingming/coding/ctp_api/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/CTP.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luoqingming/coding/ctp_api/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/CTP.dir/rule
+
+# Convenience name for target.
+CTP: src/CMakeFiles/CTP.dir/rule
+
+.PHONY : CTP
+
+# clean rule for target.
+src/CMakeFiles/CTP.dir/clean:
+	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/clean
+.PHONY : src/CMakeFiles/CTP.dir/clean
+
+# clean rule for target.
+clean: src/CMakeFiles/CTP.dir/clean
 
 .PHONY : clean
 

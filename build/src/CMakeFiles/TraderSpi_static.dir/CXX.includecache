@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../inc/ThostFtdcTraderApi.h
+ThostFtdcUserApiStruct.h
+../inc/ThostFtdcUserApiStruct.h
+
+../inc/ThostFtdcUserApiDataType.h
+
+../inc/ThostFtdcUserApiStruct.h
+ThostFtdcUserApiDataType.h
+../inc/ThostFtdcUserApiDataType.h
+
+../inc/TraderSpi.h
+ThostFtdcTraderApi.h
+../inc/ThostFtdcTraderApi.h
+
+/home/luoqingming/coding/ctp_api/src/TraderSpi.cpp
+iostream
+-
+fstream
+-
+cstring
+-
+cstdlib
+-
+unistd.h
+-
+TraderSpi.h
+/home/luoqingming/coding/ctp_api/src/TraderSpi.h
+ThostFtdcTraderApi.h
+/home/luoqingming/coding/ctp_api/src/ThostFtdcTraderApi.h
+

@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named CTP
-
-# Build rule for target.
-CTP: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CTP
-.PHONY : CTP
-
-# fast build rule for target.
-CTP/fast:
-	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/build
-.PHONY : CTP/fast
-
-#=============================================================================
 # Target rules for targets named CMdSpi_static
 
 # Build rule for target.
@@ -136,6 +123,32 @@ CMdSpi_static/fast:
 	$(MAKE) -f src/CMakeFiles/CMdSpi_static.dir/build.make src/CMakeFiles/CMdSpi_static.dir/build
 .PHONY : CMdSpi_static/fast
 
+#=============================================================================
+# Target rules for targets named TraderSpi_static
+
+# Build rule for target.
+TraderSpi_static: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TraderSpi_static
+.PHONY : TraderSpi_static
+
+# fast build rule for target.
+TraderSpi_static/fast:
+	$(MAKE) -f src/CMakeFiles/TraderSpi_static.dir/build.make src/CMakeFiles/TraderSpi_static.dir/build
+.PHONY : TraderSpi_static/fast
+
+#=============================================================================
+# Target rules for targets named CTP
+
+# Build rule for target.
+CTP: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CTP
+.PHONY : CTP
+
+# fast build rule for target.
+CTP/fast:
+	$(MAKE) -f src/CMakeFiles/CTP.dir/build.make src/CMakeFiles/CTP.dir/build
+.PHONY : CTP/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -144,8 +157,9 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... CTP"
 	@echo "... CMdSpi_static"
+	@echo "... TraderSpi_static"
+	@echo "... CTP"
 .PHONY : help
 
 

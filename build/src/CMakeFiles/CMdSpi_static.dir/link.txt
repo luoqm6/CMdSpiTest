@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../../lib/libCMdSpi_static.a  CMakeFiles/CMdSpi_static.dir/CMdSpi.cpp.o
-/usr/bin/ranlib ../../lib/libCMdSpi_static.a
+/usr/bin/ar qc ../../lib/libCMdSpi.a  CMakeFiles/CMdSpi_static.dir/CMdSpi.cpp.o
+/usr/bin/ranlib ../../lib/libCMdSpi.a
