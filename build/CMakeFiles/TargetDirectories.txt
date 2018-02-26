@@ -1,7 +1,0 @@
-/home/luoqingming/coding/ctp_api/build/CMakeFiles/edit_cache.dir
-/home/luoqingming/coding/ctp_api/build/CMakeFiles/rebuild_cache.dir
-/home/luoqingming/coding/ctp_api/build/src/CMakeFiles/edit_cache.dir
-/home/luoqingming/coding/ctp_api/build/src/CMakeFiles/CMdSpi_static.dir
-/home/luoqingming/coding/ctp_api/build/src/CMakeFiles/rebuild_cache.dir
-/home/luoqingming/coding/ctp_api/build/src/CMakeFiles/TraderSpi_static.dir
-/home/luoqingming/coding/ctp_api/build/src/CMakeFiles/CTP.dir

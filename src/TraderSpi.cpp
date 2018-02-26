@@ -30,7 +30,7 @@ TThostFtdcOrderRefType	EXECORDER_REF;	//execute order reference
 TThostFtdcOrderRefType	FORQUOTE_REF;	//for quote reference
 TThostFtdcOrderRefType	QUOTE_REF;		//quote reference
 
-// Á÷¿ØÅÐ¶Ï
+// 
 bool IsFlowControl(int iResult)
 {
 	return ((iResult == -2) || (iResult == -3));
@@ -126,7 +126,6 @@ void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CTho
 		ReqQryTradingAccount();
 	}
 }
-TThostFtdcFrontIDType FRONT_ID; 		//fron
 
 void CTraderSpi::ReqQryTradingAccount()
 {
