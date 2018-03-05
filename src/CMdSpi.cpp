@@ -9,8 +9,8 @@
 extern CThostFtdcMdApi *pUserApi;         //
 extern char gMdFrontAddr[];
 extern TThostFtdcBrokerIDType gBrokerID;
-extern TThostFtdcInvestorIDType gInvesterID;
-extern TThostFtdcPasswordType gInvesterPassword; // 
+extern TThostFtdcInvestorIDType gInvestorID;
+extern TThostFtdcPasswordType gInvestorPassword; // 
 extern char *ppInstrumentID[];                  // 
 extern int instrumentNum;                        // 
 // extern std::unordered_map<std::string, TickToKlineHelper> g_KlineHash; // 
@@ -25,8 +25,8 @@ void CMdSpi::OnFrontConnected()
 	CThostFtdcReqUserLoginField loginReq;
 	memset(&loginReq,0,sizeof(loginReq));
 	strcpy(loginReq.BrokerID, gBrokerID);
-	strcpy(loginReq.UserID, gInvesterID);
-	strcpy(loginReq.Password, gInvesterPassword);
+	strcpy(loginReq.UserID, gInvestorID);
+	strcpy(loginReq.Password, gInvestorPassword);
 	static int requestID = 0;
 	int rt = pUserApi -> ReqUserLogin(&loginReq,requestID);
 	if(!rt)
