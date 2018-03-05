@@ -30,14 +30,16 @@ int main()
 	// scanf("%s",gInvesterID);
 	// cout<<"Enter password: ";
 	// scanf("%s",gInvesterPassword);
-
+    
+    // CMdSpi
 	pUserApi = CThostFtdcMdApi::CreateFtdcMdApi();
 	CMdSpi* pUserSpi = new CMdSpi();
 	pUserApi->RegisterSpi(pUserSpi);
 	pUserApi->RegisterFront(gMdFrontAddr);
 	pUserApi->Init();
 	pUserApi->Join();
-
+    
+    
 
 	//pUserApi->Release();
 	return 0;
