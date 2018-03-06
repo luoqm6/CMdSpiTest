@@ -23,9 +23,9 @@ CThostFtdcMdApi* pMdUserApi = NULL;
 
 // Market data spi
 char gMdFrontAddr[] = "tcp://180.168.146.187:10010";
-TThostFtdcBrokerIDType gBrokerID = "9999";		//code of the broker
-TThostFtdcInvestorIDType gInvestorID = "112573";
-TThostFtdcPasswordType gInvestorPassword = "Luoqingming1997";
+TThostFtdcBrokerIDType gBrokerID ;		//code of the broker
+TThostFtdcInvestorIDType gInvestorID ;
+TThostFtdcPasswordType gInvestorPassword ;
 char *ppInstrumentID[] = {};
 int instrumentNum = 2;
 
@@ -37,72 +37,112 @@ int main(int argc,char* argv[])
 
 	printf("-------------\n");
 
+	//get parameters
 	if(argc < 2)
 	{
-		printf("Usage: ./CTP -options\n");
-		printf("Use \"./CTP\" -h to see the options\n");
+		printf("Usage: ./Md -opt1 para1 -opt2 para2 ...\n");
+		printf("Use \"./Md -h\" to see the options\n");
 		exit(0);
 	}
+
 	char ch;
 
 	char* filePath;
 
-	while((ch = getopt(argc, argv, "b:i:p:f:n:h"))!= -1){
+	while((ch = getopt(argc, argv, "f:h"))!= -1){
 		switch(ch){
 
-			case 'b':
-				sprintf(gBrokerID,"%s",optarg);
-				printf("%s\n", gBrokerID);
-				break;
+			// case 'b':
+			// 	sprintf(gBrokerID,"%s",optarg);
+			// 	printf("%s\n", gBrokerID);
+			// 	break;
 
-			case 'i':
-				sprintf(gInvestorID,"%s",optarg);
-				printf("%s\n", gInvestorID);
-				break;
+			// case 'i':
+			// 	sprintf(gInvestorID,"%s",optarg);
+			// 	printf("%s\n", gInvestorID);
+			// 	break;
 
-			case 'p':
-				sprintf(gInvestorPassword,"%s",optarg);
-				printf("%s\n", gInvestorPassword);
-				break;
+			// case 'p':
+			// 	sprintf(gInvestorPassword,"%s",optarg);
+			// 	printf("%s\n", gInvestorPassword);
+			// 	break;
 
 			case 'f':
 				filePath = optarg;
 				printf("%s\n", filePath);
 				break;
 
-			case 'n':
-				instrumentNum = atoi(optarg);
-				printf("%d\n", instrumentNum);
+			// case 'n':
+			// 	instrumentNum = atoi(optarg);
+			// 	printf("%d\n", instrumentNum);
 				break;
 
 			case 'h':
 				printf("Options:\n");
-				printf("Usage: ./CTP -opt1 para1 -opt2 para2 ...\n");
-				printf("-b: Broker ID\n");
-				printf("-i: Investor ID\n");
-				printf("-p: Investor Password\n");
+				printf("Usage: ./Md -opt1 para1 -opt2 para2 ...\n");
+				// printf("-b: Broker ID\n");
+				// printf("-i: Investor ID\n");
+				// printf("-p: Investor Password\n");
 				printf("-f: config filepath\n");
-				printf("-n: Sum of instrument\n");
+				// printf("-n: Sum of instrument\n");
 				printf("-h: Help to list the options\n");
+				exit(0);
 				break;
 
 			default:
-				printf("Usage: ./CTP -opt1 para1 -opt2 para2 ...\n");
-				printf("Use \"./CTP -h\" to see the options\n");
+				printf("Usage: ./Md -opt1 para1 -opt2 para2 ...\n");
+				printf("Use \"./Md -h\" to see the options\n");
 				exit(0);
 				break;
 		}
 	}
+
+	//read config.ini file
+	CIni ini;
+
+	ini.openFile(filePath,"r");
+
+	char* brokerId = ini.getStr("Broker","ID");
+	sprintf(gBrokerID,"%s",brokerId);
+	printf("gBrokerID=%s\n", gBrokerID);
+	char* investorId = ini.getStr("Investor","ID");
+	sprintf(gInvestorID,"%s",investorId);
+	printf("gInvestorID=%s\n", gInvestorID);
+	char* password = ini.getStr("Investor","Password");
+	sprintf(gInvestorPassword,"%s",password);
+	printf("gInvestorPassword=%s\n", gInvestorPassword);
+
+	instrumentNum = ini.getInt("InstrumentNum", "InstrumentNum");
+	printf("instrumentNum=%d\n", instrumentNum);
+
+	char InstrumentCode[5] = {'C','o','d','e','0'};
+	string temp[instrumentNum];
+	for(int i=0;i<instrumentNum;i++)
+	{
+		InstrumentCode[4] = (char)(i+48);
+		temp[i] = ini.getStr("InstrumentCode", InstrumentCode);
+
+	}
+	for(int i=0;i<instrumentNum;i++)
+	{
+		ppInstrumentID[i] = (char*) temp[i].data();
+	}
+	for(int i=0;i<instrumentNum;i++)
+	{
+		cout << "ppInstrumentID[" << i << "]=" << ppInstrumentID[i] << endl;
+	}
+
+
     
 	// CMdSpi
-	// pMdUserApi = CThostFtdcMdApi::CreateFtdcMdApi();
-	// CMdSpi* pMdUserSpi = new CMdSpi();
-	// pMdUserApi->RegisterSpi(pMdUserSpi);
-	// pMdUserApi->RegisterFront(gMdFrontAddr);
-	// pMdUserApi->Init();
+	pMdUserApi = CThostFtdcMdApi::CreateFtdcMdApi();
+	CMdSpi* pMdUserSpi = new CMdSpi();
+	pMdUserApi->RegisterSpi(pMdUserSpi);
+	pMdUserApi->RegisterFront(gMdFrontAddr);
+	pMdUserApi->Init();
 
-	// pMdUserApi->Join();
+	pMdUserApi->Join();
 
-	//pMdUserApi->Release();
+	pMdUserApi->Release();
 	return 0;
 }

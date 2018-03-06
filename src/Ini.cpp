@@ -11,7 +11,7 @@ CIni::~CIni()
 	m_Map.clear();
 }
 
-INI_RES CIni::OpenFile(const char* pathName, const char* type)
+INI_RES CIni::openFile(const char* pathName, const char* type)
 { 
 	string szLine,szMainKey,szLastMainKey,szSubKey;
 	char strLine[ CONFIGLEN ] = { 0 };
@@ -70,7 +70,7 @@ INI_RES CIni::OpenFile(const char* pathName, const char* type)
 	return INI_SUCCESS;
 }
 
-INI_RES CIni::CloseFile()
+INI_RES CIni::closeFile()
 {
     if (m_fp != NULL)
     {
@@ -81,7 +81,7 @@ INI_RES CIni::CloseFile()
     return INI_SUCCESS;
 }
 
-INI_RES CIni::GetKey(const char* mAttr, const char* cAttr, char* pValue)
+INI_RES CIni::getKey(const char* mAttr, const char* cAttr, char* pValue)
 {
  
 	KEYMAP mKey = m_Map[ mAttr ];
@@ -93,21 +93,21 @@ INI_RES CIni::GetKey(const char* mAttr, const char* cAttr, char* pValue)
 	return INI_SUCCESS;
 }
 
-int CIni::GetInt(const char* mAttr, const char* cAttr )
+int CIni::getInt(const char* mAttr, const char* cAttr )
 {
 	int nRes = 0;
 	memset( m_szKey,0,sizeof(m_szKey) );
-	if( INI_SUCCESS == GetKey( mAttr,cAttr,m_szKey ) )
+	if( INI_SUCCESS == getKey( mAttr,cAttr,m_szKey ) )
 	{
 		nRes = atoi( m_szKey );
 	}
 	return nRes;
 }
 
-char *CIni::GetStr(const char* mAttr, const char* cAttr )
+char *CIni::getStr(const char* mAttr, const char* cAttr )
 {
 	memset( m_szKey,0,sizeof(m_szKey) );
-	if( INI_SUCCESS != GetKey( mAttr,cAttr,m_szKey ) )
+	if( INI_SUCCESS != getKey( mAttr,cAttr,m_szKey ) )
 	{
 		strcpy( m_szKey,"NULL" );
 	}

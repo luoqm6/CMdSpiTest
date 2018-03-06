@@ -26,16 +26,16 @@ public:
 	virtual ~CIni();
 
 public:
-	int GetInt(const char* mAttr, const char* cAttr);
+	int getInt(const char* mAttr, const char* cAttr);
 
-	char *GetStr(const char* mAttr, const char* cAttr);
+	char *getStr(const char* mAttr, const char* cAttr);
 
-	INI_RES OpenFile(const char* pathName, const char* type);  
+	INI_RES openFile(const char* pathName, const char* type);  
 
-	INI_RES CloseFile();  
+	INI_RES closeFile();  
 
 protected:
-	INI_RES GetKey(const char* mAttr, const char* cAttr, char* value);  
+	INI_RES getKey(const char* mAttr, const char* cAttr, char* value);  
 
 protected:
 	FILE* m_fp;  
