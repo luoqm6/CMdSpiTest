@@ -132,7 +132,6 @@ int main(int argc,char* argv[])
 		cout << "ppInstrumentID[" << i << "]=" << ppInstrumentID[i] << endl;
 	}
 
-
     
 	// CMdSpi
 	pMdUserApi = CThostFtdcMdApi::CreateFtdcMdApi();
