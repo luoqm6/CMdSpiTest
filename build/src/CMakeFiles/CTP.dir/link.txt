@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/CTP.dir/main.cpp.o  -o ../../bin/CTP  -L/home/luoqingming/coding/CMdSpiTest/lib -lthostmduserapi ../../lib/libCMdSpi.so -Wl,-rpath,/home/luoqingming/coding/CMdSpiTest/lib 
