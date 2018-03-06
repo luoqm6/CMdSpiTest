@@ -6,7 +6,7 @@
 #include "ThostFtdcMdApi.h"
 #include "ThostFtdcUserApiStruct.h"
 
-extern CThostFtdcMdApi *pUserApi;         //
+extern CThostFtdcMdApi *pMdUserApi;         //
 extern char gMdFrontAddr[];
 extern TThostFtdcBrokerIDType gBrokerID;
 extern TThostFtdcInvestorIDType gInvestorID;
@@ -28,7 +28,7 @@ void CMdSpi::OnFrontConnected()
 	strcpy(loginReq.UserID, gInvestorID);
 	strcpy(loginReq.Password, gInvestorPassword);
 	static int requestID = 0;
-	int rt = pUserApi -> ReqUserLogin(&loginReq,requestID);
+	int rt = pMdUserApi -> ReqUserLogin(&loginReq,requestID);
 	if(!rt)
 		std::cout << ">>>>>>Sent login request successfully" << std::endl;
 	else 
@@ -65,7 +65,7 @@ void CMdSpi::OnRspUserLogin(
 		std::cout << "Broker: " << pRspUserLogin->BrokerID << std::endl;
 		std::cout << "User: " << pRspUserLogin->UserID << std::endl;
 		// begin to send subscribe quotation request
-		int rt = pUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
+		int rt = pMdUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
 		if(!rt)
 			std::cout << ">>>>>>Sent subscribe market request successfully" << std::endl;
 		else 
@@ -103,13 +103,13 @@ void CMdSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo,
 
 void CMdSpi::SubscribeMarketData()
 {
-	int iResult = pUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
+	int iResult = pMdUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
 	std::cout << "--->>> Send market data subscribe: " << ((iResult == 0) ? "successful" : "failed") << std::endl;
 }
 
 void CMdSpi::SubscribeForQuoteRsp()
 {
-	int iResult = pUserApi->SubscribeForQuoteRsp(ppInstrumentID, instrumentNum);
+	int iResult = pMdUserApi->SubscribeForQuoteRsp(ppInstrumentID, instrumentNum);
 	std::cout << "--->>> Send quotation subscribe: " << ((iResult == 0) ? "successful" : "failed") << std::endl;
 }
 

@@ -1,6 +1,6 @@
-SET(CLASS_FILE CMdSpi CTraderSpi)
+SET(CLASS_FILE CMdSpi)
 SET(MAIN_FILE main)
-SET(CTP_SO thostmduserapi thosttraderapi)
+SET(CTP_SO thostmduserapi)
 
 # compile so files and a files
 FOREACH(f ${CLASS_FILE})
