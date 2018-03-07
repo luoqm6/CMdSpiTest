@@ -10,19 +10,20 @@
 #include "ThostFtdcTraderApi.h"
 #include "ThostFtdcUserApiStruct.h"
 #include "CMdSpi.h"
-#include "CTraderSpi.h"
 #include "Ini.h"
 
 using namespace std;
 
 
 //configuration parameter
+//read config.ini file and asign to the global varibles
+void readConfig(char* filePath);
 
 // Api pointer
 CThostFtdcMdApi* pMdUserApi = NULL;
 
 // Market data spi
-char gMdFrontAddr[] = "tcp://180.168.146.187:10010";
+char gMdFrontAddr[] = "tcp://180.168.146.187:10010";//10031
 TThostFtdcBrokerIDType gBrokerID ;		//code of the broker
 TThostFtdcInvestorIDType gInvestorID ;
 TThostFtdcPasswordType gInvestorPassword ;
@@ -52,29 +53,9 @@ int main(int argc,char* argv[])
 	while((ch = getopt(argc, argv, "f:h"))!= -1){
 		switch(ch){
 
-			// case 'b':
-			// 	sprintf(gBrokerID,"%s",optarg);
-			// 	printf("%s\n", gBrokerID);
-			// 	break;
-
-			// case 'i':
-			// 	sprintf(gInvestorID,"%s",optarg);
-			// 	printf("%s\n", gInvestorID);
-			// 	break;
-
-			// case 'p':
-			// 	sprintf(gInvestorPassword,"%s",optarg);
-			// 	printf("%s\n", gInvestorPassword);
-			// 	break;
-
 			case 'f':
 				filePath = optarg;
 				printf("%s\n", filePath);
-				break;
-
-			// case 'n':
-			// 	instrumentNum = atoi(optarg);
-			// 	printf("%d\n", instrumentNum);
 				break;
 
 			case 'h':
