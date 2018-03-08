@@ -11,8 +11,13 @@
 
 #include <vector>
 #include "ThostFtdcMdApi.h"
+using namespace std;
 
-
+struct OrderStru
+{
+	char *ppInstrumentID[50];
+	int instrumentNum;
+};
 
 ///inherit CThostFtdcMdSpi and implement the virtual functions
 class CMdSpi : public CThostFtdcMdSpi
@@ -62,11 +67,13 @@ public:
 	/// quote inform
 	virtual void OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp);
 	
-private:
+//private:
 	void ReqUserLogin();
-	void SubscribeMarketData();
-	void SubscribeForQuoteRsp();
+	void SubscribeMarketData(char* ppInstrumentID[],int instrumentNum);
+	
+	void UnSubscribeMarketData(char* ppInstrumentID[],int instrumentNum);
 	// 
+	void SubscribeForQuoteRsp(char* ppInstrumentID[],int instrumentNum);
 	bool IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo);
 
 };

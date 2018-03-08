@@ -11,10 +11,13 @@ extern char gMdFrontAddr[];
 extern TThostFtdcBrokerIDType gBrokerID;
 extern TThostFtdcInvestorIDType gInvestorID;
 extern TThostFtdcPasswordType gInvestorPassword; // 
-extern char *ppInstrumentID[];                  // 
-extern int instrumentNum;                        // 
+// extern char *ppInstrumentID[];                  // 
+// extern int instrumentNum;                        // 
 // extern std::unordered_map<std::string, TickToKlineHelper> g_KlineHash; // 
 
+
+extern bool isLogin;
+extern bool isConnect;
 
 /// ctp_api callback function
 // response for connected successfully
@@ -33,6 +36,7 @@ void CMdSpi::OnFrontConnected()
 		std::cout << ">>>>>>Sent login request successfully" << std::endl;
 	else 
 		std::cout << "--->>>Failed to send login request" << std::endl;
+	isConnect = 1;
 }
 
 // imform the disconnection
@@ -64,12 +68,13 @@ void CMdSpi::OnRspUserLogin(
 		std::cout << "Login time: " << pRspUserLogin->LoginTime << std::endl;
 		std::cout << "Broker: " << pRspUserLogin->BrokerID << std::endl;
 		std::cout << "User: " << pRspUserLogin->UserID << std::endl;
-		// begin to send subscribe quotation request
-		int rt = pMdUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
-		if(!rt)
-			std::cout << ">>>>>>Sent subscribe market request successfully" << std::endl;
-		else 
-			std::cout << "--->>>Failed to send subscribe quotation request" << std::endl;
+		//begin to send subscribe quotation request
+		// int rt = pMdUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
+		// if(!rt)
+		// 	std::cout << ">>>>>>Sent subscribe market request successfully" << std::endl;
+		// else 
+		// 	std::cout << "--->>>Failed to send subscribe quotation request" << std::endl;
+		isLogin = 1;
 	}
 	else
 		std::cout << "return error--->>> ErrorID = " << pRspInfo->ErrorID << std::endl << "ErrorMsg = " << pRspInfo->ErrorMsg << std::endl;
@@ -101,13 +106,29 @@ void CMdSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo,
 		std::cout << "return error--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << std::endl;
 }
 
-void CMdSpi::SubscribeMarketData()
+void CMdSpi::SubscribeMarketData(char* ppInstrumentID[],int instrumentNum)
 {
-	int iResult = pMdUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
-	std::cout << "--->>> Send market data subscribe: " << ((iResult == 0) ? "successful" : "failed") << std::endl;
+	cout<<"subscribe\n";
+
+	int rt = pMdUserApi->SubscribeMarketData(ppInstrumentID, instrumentNum);
+	if(!rt)
+		std::cout << ">>>>>>Sent subscribe MarketData request successfully" << std::endl;
+	else 
+		std::cout << "--->>>Failed to send subscribe MarketData request" << std::endl;
 }
 
-void CMdSpi::SubscribeForQuoteRsp()
+void CMdSpi::UnSubscribeMarketData(char* ppInstrumentID[],int instrumentNum)
+{
+	cout<<"UnSubscribe\n";
+
+	int rt = pMdUserApi->UnSubscribeMarketData(ppInstrumentID, instrumentNum);
+	if(!rt)
+		std::cout << ">>>>>>Sent Unsubscribe MarketData request successfully" << std::endl;
+	else 
+		std::cout << "--->>>Failed to send Unsubscribe MarketData request" << std::endl;
+}
+
+void CMdSpi::SubscribeForQuoteRsp(char* ppInstrumentID[],int instrumentNum)
 {
 	int iResult = pMdUserApi->SubscribeForQuoteRsp(ppInstrumentID, instrumentNum);
 	std::cout << "--->>> Send quotation subscribe: " << ((iResult == 0) ? "successful" : "failed") << std::endl;
@@ -122,7 +143,7 @@ void CMdSpi::OnRspSubMarketData(
 	bool bResult = pRspInfo && (pRspInfo->ErrorID !=0 );
 	if(!bResult)
 	{
-		std::cout << "------Subscribe quotation successfully------" << std::endl;
+		std::cout << "------Subscribe MarketData successfully------" << std::endl;
 		std::cout << "InstrumentID: " << pSpecificInstrument->InstrumentID << std::endl;
 		// add csv
 		char filePath[100] = {'\0'};
@@ -153,7 +174,15 @@ void CMdSpi::OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificIns
 
 void CMdSpi::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
-	std::cout << "OnRspUnSubMarketData" << std::endl;
+	bool bResult = pRspInfo && (pRspInfo->ErrorID !=0 );
+	if(!bResult)
+	{
+		std::cout << "------UnSubscribe MarketData successfully------" << std::endl;
+		std::cout << "InstrumentID: " << pSpecificInstrument->InstrumentID << std::endl;
+
+	}
+	else 
+		std::cout << "return error--->>> ErrorID=" << pRspInfo->ErrorID << ",ErrorMsg=" << pRspInfo->ErrorMsg << std::endl;
 }
 
 void CMdSpi::OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
@@ -203,4 +232,6 @@ bool CMdSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
 		std::cout << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << std::endl;
 	return bResult;
 }
+
+
 

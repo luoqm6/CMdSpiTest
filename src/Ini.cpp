@@ -1,4 +1,6 @@
 #include "Ini.h"
+#include <iostream>
+using namespace std;
 
 CIni::CIni()
 {
@@ -111,5 +113,6 @@ char *CIni::getStr(const char* mAttr, const char* cAttr )
 	{
 		strcpy( m_szKey,"NULL" );
 	}
+	//cout<<"m_szKey"<<m_szKey<<endl;
 	return m_szKey;
 }
